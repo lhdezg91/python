@@ -11,4 +11,14 @@ str(mi_variable_entera)    # convierte a string
 int(mi_variable_entera)    # convierte a entero
 float(mi_variable_entera)  # convierte a flotante
 
-print(len("hola")) # longitud de la cadena
+print("la longitud de la cadena es:",len("hola")) # longitud de la cadena
+
+#variables en una sola linea
+a,b,c = "prueba",2,True
+print(a,b,c)
+
+#input
+nombre = input("Ingrese su nombre: ")
+print("Hola,",nombre)
+
+
