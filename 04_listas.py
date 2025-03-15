@@ -24,6 +24,10 @@ elemento = list.pop(2) # elimina el elemento en la posicion 2, devuelve el eleme
 
 del list[0] # elimina el elemento en la posicion 0
 
+list.reverse() # invierte la lista
+
+list.sort() # ordena la lista
+
 print(list[-1]) # de atras para alante
 
 print(list.count("ian")) # cuantas veces aparece
