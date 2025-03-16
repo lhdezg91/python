@@ -9,3 +9,5 @@ print(my_tuple[0]) # 1
 my_tuple.index("ian") # 3 dice en que posicion esta
 
 # my_tuple[1] = 3 # error no se puede modificar
+
+my_list = list(my_tuple) # convierte a lista
