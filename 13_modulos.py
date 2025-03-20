@@ -52,6 +52,11 @@ print(pi)
 print(e)
 
 
-###
+"""
+from module import Persona
+from module import suma
+from module import *
 
-###
+import module as m
+hfjk
+"""
