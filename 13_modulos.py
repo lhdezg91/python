@@ -51,27 +51,7 @@ from math import *
 print(pi)
 print(e)
 
+
 ###
-
-    # Importar un modulo de un paquete
-    #from package.module import Persona as P
-    #Persona5 = P("Lian", 34)    
-    #print(Persona5.nombre)
-    #Persona5.saludar()
-
-    #from package.module import suma as s
-    #s(30, 30)
-
-    # Importar un modulo de un paquete con un alias
-    #from package import module as m
-    #Persona6 = m.Persona("Ivis", 35)
-    #print(Persona6.nombre)
-    #Persona6.saludar()
-
-    #from package.module import suma as s
-    #s(35, 35)
-
-    # Importar todo de un modulo de un paquete
-    #from package.module import * 
 
 ###
