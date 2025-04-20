@@ -1,9 +1,9 @@
 from queue import Full
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 
-app = FastAPI()
+router = APIRouter()
 
 # uvicorn users:app --reload
 
@@ -19,18 +19,18 @@ user_list = [User(id=1,name="Lian", apellido="Hernandez",email= "lian@gmail.com"
              User(id=2,name="Ivis", apellido="Garcia", email="ivis@gmail.com",edad= 33),
              User(id=3,name="Ian", apellido="Hernandez",email= "ian@gmail.com", edad=6)]
 
-@app.get("/users")
+@router.get("/users")
 async def users():
     return user_list
 
 # Path
-@app.get("/user/{id}")
+@router.get("/user/{id}")
 async def user(id:int):
     return get_user(id)
 
 # Query
 #/user/?id=1
-@app.get("/user/")
+@router.get("/user/")
 async def user(id:int):
     #clasico
     #for i in user_list:
@@ -46,14 +46,14 @@ def get_user(id:int):
     except:
         return {"error":"El usuario no existe"}
 
-@app.get("/users_json")
+@router.get("/users_json")
 async def users_json():
     return [{"name":"Lian", "apellido":"Hernandez","email":"lian@gmail.com","edad": 32},
             {"name":"Ivis", "apellido":"Garcia","email":"ivis@gmail.com", "edad": 33},
             {"name":"Ian", "apellido":"Hernandez","email":"ian@gmail.com", "edad": 6}]
 
 #Añadir usuario
-@app.post("/user/",status_code=201)
+@router.post("/user/",status_code=201)
 async def user_add(user:User):
     if search_user(user.id) == user:
         #esta es la manera correcta
@@ -63,7 +63,7 @@ async def user_add(user:User):
         return user
     
 #Actualizar usuario
-@app.put("/user/")
+@router.put("/user/")
 async def user_update(user:User):
     update = False
     
@@ -77,7 +77,7 @@ async def user_update(user:User):
         return {"error":"El usuario no se actualizo"}
 
 #Eliminar usuario
-@app.delete("/user/")
+@router.delete("/user/")
 async def user_delete(user:User):
     update = False
     for index, usuario in enumerate(user_list):
