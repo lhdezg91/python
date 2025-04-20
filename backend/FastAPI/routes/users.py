@@ -2,8 +2,8 @@ from queue import Full
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
+router = APIRouter(prefix="/user", tags="user",responses={404:{"message":"No encontrado"}})
 
-router = APIRouter()
 
 # uvicorn users:app --reload
 
@@ -19,18 +19,18 @@ user_list = [User(id=1,name="Lian", apellido="Hernandez",email= "lian@gmail.com"
              User(id=2,name="Ivis", apellido="Garcia", email="ivis@gmail.com",edad= 33),
              User(id=3,name="Ian", apellido="Hernandez",email= "ian@gmail.com", edad=6)]
 
-@router.get("/users")
+@router.get("/")
 async def users():
     return user_list
 
 # Path
-@router.get("/user/{id}")
+@router.get("/{id}")
 async def user(id:int):
     return get_user(id)
 
 # Query
 #/user/?id=1
-@router.get("/user/")
+@router.get("/")
 async def user(id:int):
     #clasico
     #for i in user_list:
@@ -53,7 +53,7 @@ async def users_json():
             {"name":"Ian", "apellido":"Hernandez","email":"ian@gmail.com", "edad": 6}]
 
 #Añadir usuario
-@router.post("/user/",status_code=201)
+@router.post("/",status_code=201)
 async def user_add(user:User):
     if search_user(user.id) == user:
         #esta es la manera correcta
@@ -63,7 +63,7 @@ async def user_add(user:User):
         return user
     
 #Actualizar usuario
-@router.put("/user/")
+@router.put("/")
 async def user_update(user:User):
     update = False
     
@@ -77,7 +77,7 @@ async def user_update(user:User):
         return {"error":"El usuario no se actualizo"}
 
 #Eliminar usuario
-@router.delete("/user/")
+@router.delete("/")
 async def user_delete(user:User):
     update = False
     for index, usuario in enumerate(user_list):
