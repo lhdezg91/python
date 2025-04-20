@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from routes import users
+from routes import products
 #pip install fastapi
 #pip install uvicorn
 
@@ -12,6 +14,10 @@ from fastapi import FastAPI
 
 
 app = FastAPI()
+
+#Rutas
+app.include_router(products.router)
+app.include_router(users.router)
 
 @app.get("/")
 async def root():
