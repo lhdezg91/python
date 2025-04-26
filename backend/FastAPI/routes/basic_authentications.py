@@ -43,10 +43,15 @@ users_db = {
 }
 
 async def current_user(token:str = Depends(oauth2)):
+    #print(token)
     user = search_user(token)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="No esta autorizado")
-    return user
+    
+    if not user.activo:
+        raise HTTPException(status_code=status.HTTP_423_LOCKED, detail="Esta deshabilitado")
+    
+    return User(**users_db[user.username])#lo debulevo solo como user para que no devuelva la contrasena
     
 
 def search_user(username: str):
@@ -76,4 +81,5 @@ async def login(form:OAuth2PasswordRequestForm = Depends()):
 
 @app.get("/users/me")
 async def me(user: User = Depends(current_user)):
+    #print(user)
     return user
