@@ -2,7 +2,7 @@ from queue import Full
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-router = APIRouter(prefix="/user", tags="user",responses={404:{"message":"No encontrado"}})
+router = APIRouter(prefix="/user", tags=["user"],responses={404:{"message":"No encontrado"}})
 
 
 # uvicorn users:app --reload
